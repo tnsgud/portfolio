@@ -5,6 +5,7 @@
   padding: 0;
   background-color: #121212;
   color: white;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 header {
@@ -17,6 +18,11 @@ header {
   flex-direction: row;
   z-index: 100;
   align-items: center;
+}
+
+section {
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 header ul {
@@ -47,7 +53,6 @@ header ul {
 
 .informationSection {
   padding-top: 100px;
-  font-family: 'Noto Sans KR', sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -57,12 +62,6 @@ header ul {
 .informationDiv {
   width: 400px;
   padding-left: 10px;
-}
-
-.title {
-  text-align: center;
-  font-size: 50px;
-  font-weight: bold;
 }
 
 .information {
