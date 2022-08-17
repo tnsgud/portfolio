@@ -1,6 +1,5 @@
 import 'css/App.css';
-import Typewriter from 'typewriter-effect';
-import Main from 'components/main';
+import Main from 'components/Main';
 
 function App() {
   const information: string[] = [
@@ -19,45 +18,16 @@ function App() {
   const components: JSX.Element[] = [<Main />];
 
   return (
-    <div>
-      <header>
-        <h1>박순형</h1>
-        <ul>
-          {navigationCaption.map((caption) => (
-            <li key={caption}>
-              <a className='nav' href={`#${caption}`}>
-                {caption}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </header>
-      <main>
-        {navigationCaption.map((caption, i) => {
-          return (
-            <section key={i} id={caption}>
-              {caption}
-              {components[i]}
-            </section>
-          );
-        })}
-        <div className='informationDiv'>
-          <img id='photo' src='/image/profile.jpg' alt='' />
-          {information.map((info) => (
-            <Typewriter
-              key={info}
-              onInit={(typewriter) => {
-                typewriter.typeString(info).start();
-              }}
-              options={{
-                cursor: '',
-                wrapperClassName: 'information',
-              }}
-            />
-          ))}
-        </div>
-      </main>
-    </div>
+    <main>
+      {navigationCaption.map((caption, i) => {
+        return (
+          <section key={i} id={caption}>
+            {caption}
+            {components[i]}
+          </section>
+        );
+      })}
+    </main>
   );
 }
 

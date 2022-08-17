@@ -15,6 +15,7 @@ const Main = () => {
       }}
       options={{
         wrapperClassName: 'title',
+        cursorClassName: 'cursor',
       }}
     />
   );
