@@ -1,33 +1,18 @@
 import 'css/App.css';
-import Main from 'components/Main';
-
+import Main from 'components/main';
 function App() {
-  const information: string[] = [
-    '이름 : 박순형',
-    '생일 : 2004.02.29',
-    '학교 : 인천전자마이스터 고등학교 (재학중)',
-    'Skills : Java, React, Vue, Typescript, Flutter',
-  ];
-  const navigationCaption: string[] = [
-    'main',
-    '소개',
-    '활동',
-    '자격증',
-    '수상경력',
-  ];
+  const navigtions: boolean[] = Array(4).fill(false);
   const components: JSX.Element[] = [<Main />];
 
   return (
-    <main>
-      {navigationCaption.map((caption, i) => {
-        return (
-          <section key={i} id={caption}>
-            {caption}
-            {components[i]}
-          </section>
-        );
-      })}
-    </main>
+    <>
+      <header>
+        {navigtions.map((isSelected, index) => (
+          <div>this is test</div>
+        ))}
+      </header>
+      <main>{components.map((component) => component)}</main>
+    </>
   );
 }
 

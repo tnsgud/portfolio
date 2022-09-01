@@ -1,9 +1,7 @@
 .title {
+  display: inline-block;
   text-align: center;
   font-size: 50px;
   font-weight: bold;
-}
-
-.cursor {
-  font-size: 50px;
+  transform: translateY(20%);
 }
