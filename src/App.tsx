@@ -1,10 +1,10 @@
 import 'css/App.css';
-import Main from 'components/main';
+import Main from 'components/Main';
 import { MouseEvent, useEffect, useState } from 'react';
 
 function App() {
   const [navigators, setNavigators] = useState<boolean[]>(Array(4).fill(false));
-  const components: JSX.Element[] = [<Main />];
+  const components: JSX.Element[] = [<Main />, <Main />, <Main />, <Main />];
 
   useEffect(() => {
     let arr = Array(4).fill(false);
@@ -36,7 +36,9 @@ function App() {
       </header>
       <main>
         {components.map((component, index) => (
-          <div key={index}>{component}</div>
+          <div key={index} className='content'>
+            {component}
+          </div>
         ))}
       </main>
     </>

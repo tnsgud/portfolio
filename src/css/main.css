@@ -1,7 +1,25 @@
-.title {
+/* .typing__result {
   display: inline-block;
   text-align: center;
   font-size: 50px;
   font-weight: bold;
   transform: translateY(20%);
+} */
+
+.title {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
+
+.typing {
+  height: 50px;
+}
+
+.typing__result {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
 }
