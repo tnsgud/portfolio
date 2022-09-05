@@ -1,5 +1,5 @@
 import 'css/Main.css';
-import { useState, MouseEvent, useRef } from 'react';
+import { useState, MouseEvent } from 'react';
 import { TypingMultiline } from 'react-kr-typing-anim';
 
 const Main = () => {
@@ -17,8 +17,7 @@ const Main = () => {
         fixedWidth
         onDone={() => setIsDone(true)}
         cursor
-        strs={`프론트엔드를
-      꿈꾸는
+        strs={`프론트엔드 개발자
       박순형입니다.`}
       />
       <button
