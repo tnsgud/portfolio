@@ -14,7 +14,12 @@ function App() {
 
   const onNavigatorClick = (e: MouseEvent<HTMLButtonElement>) => {
     let arr: boolean[] = Array(4).fill(false);
-    arr[Number(e.currentTarget.id)] = true;
+    const index = Number(e.currentTarget.id);
+
+    console.log(components[index]);
+
+    arr[index] = true;
+    window.scrollTo({ top: 400, behavior: 'smooth' });
 
     setNavigators(arr);
   };

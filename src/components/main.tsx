@@ -1,12 +1,12 @@
 import 'css/Main.css';
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useRef } from 'react';
 import { TypingMultiline } from 'react-kr-typing-anim';
 
 const Main = () => {
   const [isDone, setIsDone] = useState(false);
 
   const onAboutClick = (e: MouseEvent<HTMLButtonElement>) => {
-    alert('on click');
+    setIsDone(true);
   };
   return (
     <div className='title'>
@@ -21,11 +21,20 @@ const Main = () => {
       꿈꾸는
       박순형입니다.`}
       />
-      {isDone && (
-        <button className='aboutButton' onClick={onAboutClick}>
-          About me
-        </button>
-      )}
+      <button
+        style={
+          isDone
+            ? {}
+            : {
+                backgroundColor: '#121212',
+                color: '#121212',
+              }
+        }
+        className='aboutButton'
+        onClick={onAboutClick}
+      >
+        About me
+      </button>
     </div>
   );
 };
