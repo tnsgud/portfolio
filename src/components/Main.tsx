@@ -8,6 +8,7 @@ const Main = () => {
   const onAboutClick = (e: MouseEvent<HTMLButtonElement>) => {
     setIsDone(true);
   };
+
   return (
     <div className='title'>
       <TypingMultiline
