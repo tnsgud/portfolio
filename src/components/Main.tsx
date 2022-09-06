@@ -6,7 +6,9 @@ const Main = () => {
   const [isDone, setIsDone] = useState(false);
 
   const onAboutClick = (e: MouseEvent<HTMLButtonElement>) => {
-    setIsDone(true);
+    const anchor = document.getElementById('1');
+
+    anchor?.click();
   };
 
   return (
