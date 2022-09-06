@@ -36,10 +36,7 @@ main {
 section {
   width: 100%;
   height: 100vh;
-  scroll-snap-align: center;
-}
-
-#main {
   background: none;
   position: relative;
+  scroll-snap-align: center;
 }

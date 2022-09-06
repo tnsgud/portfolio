@@ -12,7 +12,7 @@ const Main = () => {
   };
 
   return (
-    <div className='title'>
+    <div className='container'>
       <TypingMultiline
         Tag='h1'
         preDelay={1000}

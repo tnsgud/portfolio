@@ -1,0 +1,15 @@
+img {
+  height: 50vh;
+}
+
+.container {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  background: none;
+}
+
+h1 {
+  text-align: left;
+}
