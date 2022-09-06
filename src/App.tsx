@@ -1,7 +1,6 @@
 import 'css/App.css';
 import Main from 'components/Main';
 import About from 'components/About';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { MouseEvent, useEffect, useState } from 'react';
 
 function App() {
