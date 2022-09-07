@@ -1,6 +1,7 @@
 import 'css/App.css';
 import Main from 'components/Main';
 import About from 'components/About';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { MouseEvent, useEffect, useState } from 'react';
 
 function App() {
@@ -12,10 +13,8 @@ function App() {
 
   useEffect(() => {
     window.addEventListener('wheel', mouseWheelEvent);
-    window.addEventListener('keydown', keydownEvent);
     return () => {
       window.removeEventListener('wheel', mouseWheelEvent);
-      window.removeEventListener('keydown', keydownEvent);
     };
   });
 
@@ -34,8 +33,8 @@ function App() {
 
     arr[index] = true;
 
-    const element = document.getElementById(`${index}`);
-    element?.click();
+    const element = document.getElementById(`${index}`) as HTMLAnchorElement;
+    element.scrollIntoView();
 
     setNavigators(arr);
   };
@@ -54,24 +53,8 @@ function App() {
     }
   };
 
-  const keydownEvent = (e: KeyboardEvent) => {
-    let currentKey = e.key;
-
-    if (currentKey !== 'ArrowDown' && currentKey !== 'ArrowUp') {
-      return;
-    }
-
-    const currentIndex = navigators.indexOf(true);
-
-    if (currentKey === 'ArrowUp') {
-      changeNavigation(currentIndex - 1);
-    } else {
-      changeNavigation(currentIndex + 1);
-    }
-  };
-
   return (
-    <>
+    <div className='scroll-container'>
       <header>
         {navigators.map((isSelected, index) => (
           <a
@@ -86,14 +69,18 @@ function App() {
           </a>
         ))}
       </header>
-      <main>
+      <div>
         {components.map((component, index) => (
-          <section key={index} id={`${navigationCaption[index]}`}>
+          <div
+            key={index}
+            id={`${navigationCaption[index]}`}
+            className='scroll-area'
+          >
             {component}
-          </section>
+          </div>
         ))}
-      </main>
-    </>
+      </div>
+    </div>
   );
 }
 
