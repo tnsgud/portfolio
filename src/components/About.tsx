@@ -1,4 +1,3 @@
-import { TypingMultiline } from 'react-kr-typing-anim';
 import '../css/About.css';
 
 const About = () => {
@@ -10,8 +9,12 @@ const About = () => {
   ];
   return (
     <div className='container'>
-      {information.map((info) => {
-        return <h1>{info}</h1>;
+      {information.map((info, index) => {
+        return (
+          <h1 key={index} className='info'>
+            {info}
+          </h1>
+        );
       })}
     </div>
   );
