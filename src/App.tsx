@@ -1,3 +1,4 @@
+import 'css/App.css';
 import { useEffect, useRef } from 'react';
 
 function App() {
@@ -17,21 +18,26 @@ function App() {
       orientation: 'vertical' as 'vertical' | 'horizontal',
       swipeThreshold: 50,
       freeScroll: false,
-      navPrevEl: false,
-      navNextEl: false,
-      infinite: true,
+      navPrevEl: true,
+      navNextEl: true,
+      infinite: false,
       events: {
         wheel: true,
         mouse: true,
         touch: true,
         keydown: true,
       },
-      easing: (currentTime, startPos, endPos, interval) => {
+      easing: (
+        currentTime: number,
+        startPos: number,
+        endPos: number,
+        interval: number
+      ) => {
         return (
           -endPos * (currentTime /= interval) * (currentTime - 2) + startPos
         );
       },
-      onScroll: (data) => {
+      onScroll: (data: any) => {
         updateLinearProgressBar(data);
       },
       // onInit: () => {},
@@ -44,7 +50,7 @@ function App() {
     pageableRef.current = pageable;
   };
 
-  const updateLinearProgressBar = (data) => {
+  const updateLinearProgressBar = (data: { max: number; scrolled: number }) => {
     const pos = 1 - (data.max - data.scrolled) / data.max;
     const linearProgressBar = linearProgressBarRef.current;
     if (!linearProgressBar) return;
@@ -53,68 +59,38 @@ function App() {
 
   useEffect(() => {
     loadPageable();
-  }, []);
+  });
 
   return (
     <>
-      <main className='indexPage pg-wrapper'>
-        <div id='container' className='pg-container' ref={containerRef}>
-          <div
-            data-anchor='page-1'
-            id='page-1'
-            className='pg-page'
-            style={{
-              backgroundColor: 'peachpuff',
-            }}
-          ></div>
-          <div
-            data-anchor='page-2'
-            className='pg-page'
-            style={{
-              backgroundColor: 'cornflowerblue',
-            }}
-          ></div>
-          <div
-            data-anchor='page-3'
-            className='pg-page'
-            style={{
-              backgroundColor: 'bisque',
-            }}
-          ></div>
-          <div
-            data-anchor='page-4'
-            className='pg-page'
-            style={{
-              backgroundColor: 'mediumaquamarine',
-            }}
-          ></div>
-        </div>
-
-        <div
-          className='linear-progress'
-          style={{
-            position: 'fixed',
-            top: '0px',
-            left: '10px',
-            width: 'calc(100vw - 20px)',
-            height: '2px',
-          }}
-        >
-          <div
-            className='bar'
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              width: '100%',
-              height: '100%',
-              backgroundColor: '#84e8ff',
-              transformOrigin: '0 0 0',
-            }}
-            ref={linearProgressBarRef}
-          ></div>
-        </div>
-      </main>
+      <div className='pg-wrapper'>
+        <main id='container' className='pg-container' ref={containerRef}>
+          {Array(4)
+            .fill(0)
+            .map((value, index) => {
+              return (
+                <div
+                  data-anchor={`page-${index}`}
+                  className='pg-page'
+                  style={{ backgroundColor: `#${index.toString().repeat(6)}` }}
+                ></div>
+              );
+            })}
+        </main>
+        <nav className='pg-pips'>
+          <ul>
+            {Array(4)
+              .fill(0)
+              .map((value, index) => {
+                return (
+                  <li>
+                    <a href={`#page-${index}`}></a>
+                  </li>
+                );
+              })}
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }
