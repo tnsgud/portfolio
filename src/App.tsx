@@ -1,7 +1,10 @@
 import 'css/App.css';
+import Main from 'pages/Main';
+import Skills from 'pages/Skills';
 import { useEffect, useRef } from 'react';
 
 function App() {
+  const components: JSX.Element[] = [<Main />, <Skills />];
   const containerRef = useRef<HTMLDivElement>(null);
   const linearProgressBarRef = useRef<HTMLDivElement>(null);
   const pageableRef = useRef<any>(null);
@@ -65,31 +68,18 @@ function App() {
     <>
       <div className='pg-wrapper'>
         <main id='container' className='pg-container' ref={containerRef}>
-          {Array(4)
-            .fill(0)
-            .map((value, index) => {
-              return (
-                <div
-                  data-anchor={`page-${index}`}
-                  className='pg-page'
-                  style={{ backgroundColor: `#${index.toString().repeat(6)}` }}
-                ></div>
-              );
-            })}
+          {components.map((component, index) => {
+            return (
+              <div
+                key={index}
+                data-anchor={`page-${index}`}
+                className='pg-page'
+              >
+                {component}
+              </div>
+            );
+          })}
         </main>
-        <nav className='pg-pips'>
-          <ul>
-            {Array(4)
-              .fill(0)
-              .map((value, index) => {
-                return (
-                  <li>
-                    <a href={`#page-${index}`}></a>
-                  </li>
-                );
-              })}
-          </ul>
-        </nav>
       </div>
     </>
   );

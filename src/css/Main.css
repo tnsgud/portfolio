@@ -17,11 +17,7 @@
   font-weight: bold;
 }
 
-.aboutButton {
-  margin-top: 5vh;
-  width: 10vw;
-  height: 6vh;
-  color: black;
-  background-color: white;
-  border: none;
+.icon {
+  position: absolute;
+  top: 50vh;
 }

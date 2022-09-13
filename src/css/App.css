@@ -4,5 +4,11 @@
   margin: 0px;
   padding: 0px;
   font-family: 'Noto Sans KR', sans-serif;
+  color: white;
+  background-color: #121212;
   text-align: center;
+}
+
+.pg-page {
+  position: relative;
 }

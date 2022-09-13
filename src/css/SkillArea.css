@@ -1,0 +1,19 @@
+#container {
+}
+
+#title {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+#grid-container {
+  border: 5px solid white;
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 95px);
+  grid-template-rows: repeat(1, 95px);
+  justify-content: center;
+  align-items: center;
+  grid-gap: 60px;
+}
