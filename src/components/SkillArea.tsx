@@ -7,6 +7,10 @@ const SkillArea = ({
   title: string;
   icons: JSX.Element[];
 }) => {
+  if (icons.length === 1) {
+    icons.unshift(<div></div>);
+    icons.push(<div></div>);
+  }
   return (
     <div id='container'>
       <div id='title'>{title}</div>

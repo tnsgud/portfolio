@@ -54,11 +54,18 @@ const Skills = () => {
   return (
     <div id='area-container'>
       <SkillArea title='Language' icons={languageIcons} />
-      <SkillArea title='Library & Framework' icons={libraryAndFrameworkIcons} />
-      <SkillArea title='Editor & IDE' icons={editorAndIDE} />
-      <SkillArea title='Version Control' icons={versionControl} />
-      <SkillArea title='DB' icons={DB} />
-      <SkillArea title='Communication' icons={communication} />
+      <div>
+        <SkillArea
+          title='Library & Framework'
+          icons={libraryAndFrameworkIcons}
+        />
+        <SkillArea title='Editor & IDE' icons={editorAndIDE} />
+        <SkillArea title='Version Control' icons={versionControl} />
+      </div>
+      <div>
+        <SkillArea title='DB' icons={DB} />
+        <SkillArea title='Communication' icons={communication} />
+      </div>
     </div>
   );
 };
