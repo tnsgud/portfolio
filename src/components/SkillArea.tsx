@@ -12,7 +12,7 @@ const SkillArea = ({
     icons.push(<div></div>);
   }
   return (
-    <div id='container'>
+    <div>
       <div id='title'>{title}</div>
       <div id='grid-container'>
         {icons.map((icon, index) => {
