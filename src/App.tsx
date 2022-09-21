@@ -1,12 +1,12 @@
 import 'css/App.css';
 import Main from 'pages/Main';
+import Projects from 'pages/Projects';
 import Skills from 'pages/Skills';
 import { useEffect, useRef } from 'react';
 
 function App() {
-  const components: JSX.Element[] = [<Main />, <Skills />];
+  const components: JSX.Element[] = [<Main />, <Skills />, <Projects />];
   const containerRef = useRef<HTMLDivElement>(null);
-  const linearProgressBarRef = useRef<HTMLDivElement>(null);
   const pageableRef = useRef<any>(null);
 
   const loadPageable = async () => {
@@ -40,9 +40,7 @@ function App() {
           -endPos * (currentTime /= interval) * (currentTime - 2) + startPos
         );
       },
-      onScroll: (data: any) => {
-        updateLinearProgressBar(data);
-      },
+      // onScroll: ()=>{},
       // onInit: () => {},
       // onUpdate: (data) => {}
       // onBeforeStart: () => {},
@@ -51,13 +49,6 @@ function App() {
     });
 
     pageableRef.current = pageable;
-  };
-
-  const updateLinearProgressBar = (data: { max: number; scrolled: number }) => {
-    const pos = 1 - (data.max - data.scrolled) / data.max;
-    const linearProgressBar = linearProgressBarRef.current;
-    if (!linearProgressBar) return;
-    linearProgressBar.style.transform = `scale(${pos}, 1)`;
   };
 
   useEffect(() => {
