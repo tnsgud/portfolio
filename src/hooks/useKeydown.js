@@ -2,7 +2,10 @@ import { useEffect, useRef } from 'react';
 
 export default function useKeydown(handlers, enabled = true) {
   const handlersRef = useRef(handlers);
-  handlersRef.current = handlers;
+
+  useEffect(() => {
+    handlersRef.current = handlers;
+  });
 
   useEffect(() => {
     if (!enabled) return;

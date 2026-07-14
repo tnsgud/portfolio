@@ -2,9 +2,28 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import GameHUD from '../components/GameHUD';
 import ScanLines from '../components/ScanLines';
+import useKeydown from '../hooks/useKeydown';
+
+const MENU_ITEMS = [
+  { path: '/skills', label: '⚡ SKILLS', desc: '능력치 보기' },
+  { path: '/projects', label: '★ MISSIONS', desc: '프로젝트 기록' },
+  { path: '/learning', label: '▲ TRAINING', desc: '학습 현황' },
+  { path: '/blog', label: '◆ CODEX', desc: '개발 블로그' },
+];
 
 export default function MainMenu({ onFloorChange, disabled }) {
   const [showContact, setShowContact] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useKeydown(
+    {
+      ArrowUp: () =>
+        setSelectedIndex((i) => (i + MENU_ITEMS.length - 1) % MENU_ITEMS.length),
+      ArrowDown: () => setSelectedIndex((i) => (i + 1) % MENU_ITEMS.length),
+      Enter: () => onFloorChange?.(MENU_ITEMS[selectedIndex].path),
+    },
+    !disabled
+  );
 
   return (
     <div className="relative min-h-screen bg-dark-bg overflow-hidden flex flex-col items-center justify-center">
@@ -98,39 +117,47 @@ export default function MainMenu({ onFloorChange, disabled }) {
           transition={{ delay: 1 }}
           className="flex flex-col items-center gap-3"
         >
-          {[
-            { path: '/skills', label: '⚡ SKILLS', desc: '능력치 보기' },
-            { path: '/projects', label: '★ MISSIONS', desc: '프로젝트 기록' },
-            { path: '/learning', label: '▲ TRAINING', desc: '학습 현황' },
-            { path: '/blog', label: '◆ CODEX', desc: '개발 블로그' },
-          ].map((item) => (
-            <button
-              key={item.path}
-              onClick={() => onFloorChange?.(item.path)}
-              disabled={disabled}
-              className="group relative w-64 py-2.5 text-left px-5 transition-all duration-300 bg-dark-card/50 hover:bg-dark-card/80"
-              style={{
-                border: '1px solid rgba(0, 240, 255, 0.1)',
-                clipPath: 'polygon(8px 0, calc(100% - 8px) 0, 100% 100%, 0 100%)',
-              }}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-sm text-neon-cyan group-hover:text-white transition-colors">
-                    {item.label}
+          {MENU_ITEMS.map((item, i) => {
+            const isSelected = i === selectedIndex;
+            return (
+              <button
+                key={item.path}
+                onClick={() => onFloorChange?.(item.path)}
+                onMouseEnter={() => setSelectedIndex(i)}
+                disabled={disabled}
+                className={`group relative w-64 py-2.5 text-left px-5 transition-all duration-300 ${
+                  isSelected ? 'bg-dark-card/80' : 'bg-dark-card/50'
+                }`}
+                style={{
+                  border: `1px solid ${
+                    isSelected ? 'rgba(0, 240, 255, 0.5)' : 'rgba(0, 240, 255, 0.1)'
+                  }`,
+                  boxShadow: isSelected ? '0 0 20px rgba(0, 240, 255, 0.15)' : 'none',
+                  clipPath: 'polygon(8px 0, calc(100% - 8px) 0, 100% 100%, 0 100%)',
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span
+                      className={`text-sm transition-colors ${
+                        isSelected ? 'text-white' : 'text-neon-cyan'
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                    <p className="text-[10px] text-gray-600 mt-0.5">{item.desc}</p>
+                  </div>
+                  <span
+                    className={`transition-colors text-xs ${
+                      isSelected ? 'text-neon-cyan' : 'text-gray-700'
+                    }`}
+                  >
+                    {'>'}
                   </span>
-                  <p className="text-[10px] text-gray-600 mt-0.5">{item.desc}</p>
                 </div>
-                <span className="text-gray-700 group-hover:text-neon-cyan transition-colors text-xs">{'>'}</span>
-              </div>
-              <div
-                className="absolute left-0 bottom-0 h-[1px] bg-neon-cyan/30 group-hover:bg-neon-cyan/60 transition-all duration-300"
-                style={{ width: '0%', boxShadow: '0 0 4px rgba(0,240,255,0.2)' }}
-                onMouseEnter={(e) => e.currentTarget.style.width = '100%'}
-                onMouseLeave={(e) => e.currentTarget.style.width = '0%'}
-              />
-            </button>
-          ))}
+              </button>
+            );
+          })}
         </motion.div>
 
         {/* Contact / Player Data */}
@@ -182,7 +209,7 @@ export default function MainMenu({ onFloorChange, disabled }) {
 
         {/* Bottom instruction */}
         <div className="absolute bottom-24 text-[10px] text-gray-800 tracking-[0.4em] animate-pulse">
-          SELECT ZONE
+          ↑↓ SELECT&nbsp;&nbsp;⏎ CONFIRM
         </div>
       </div>
     </div>
