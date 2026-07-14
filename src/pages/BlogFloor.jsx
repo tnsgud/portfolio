@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GameHUD from '../components/GameHUD';
 import NeonSign from '../components/NeonSign';
 import ScanLines from '../components/ScanLines';
+import useKeydown from '../hooks/useKeydown';
 
 const posts = [
   {
@@ -63,6 +64,8 @@ const posts = [
 
 export default function Codex({ onFloorChange, disabled }) {
   const [selected, setSelected] = useState(null);
+
+  useKeydown({ Escape: () => setSelected(null) }, selected !== null);
 
   return (
     <div className="relative min-h-screen bg-dark-bg overflow-y-auto overflow-x-hidden">
